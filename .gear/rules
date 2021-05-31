@@ -1,2 +1,1 @@
 copy?: SOURCES/*
-specsubst: kflavour karch

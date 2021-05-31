@@ -1,10 +1,10 @@
 %define module_name	qca9377
 %define module_version	4.5.24.4
-%define module_release	alt1
+%define module_release	alt2
 
-%define flavour		@kflavour@
-%define karch @karch@
-BuildRequires(pre): kernel-headers-modules-@kflavour@
+%define flavour pico-imx8mq
+%define karch aarch64
+BuildRequires(pre): kernel-headers-modules-pico-imx8mq
 %setup_kernel_module %flavour
 
 %define module_dir /lib/modules/%kversion-%flavour-%krelease/%module_name
@@ -62,5 +62,11 @@ install -p -m644 wlan.ko %buildroot%module_dir
 %module_dir
 
 %changelog
+* %(LC_TIME=C date "+%%a %%b %%d %%Y") %{?package_signer:%package_signer}%{!?package_signer:%packager} %version-%release
+- Build for kernel-image-%flavour-%kversion-%krelease.
+
+* Mon May 31 2021 Pavel Nakonechnyi <zorg@altlinux.org> 4.5.24.4-alt2
+- hardcode kflavour and karch
+
 * Sun Jul 07 2019 Pavel Nakonechnyi <zorg@altlinux.org> 4.5.24.4-alt1
 - initial build
